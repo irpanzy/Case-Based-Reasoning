@@ -94,8 +94,8 @@ function prosesFuzzy(inputFile, outputFile) {
     const skor = defuzzification(rules);
 
     return {
-      ID: resto["id Pelanggan"],
-      Pelayanan: pelayanan,
+      ID_Restoran: resto["id Pelanggan"],
+      Kualitas_Servis: pelayanan,
       Harga: harga,
       Skor: skor,
     };
