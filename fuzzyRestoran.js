@@ -39,33 +39,15 @@ function fuzzyHarga(harga) {
 function inferensi(servisFuzzy, hargaFuzzy) {
   const rules = [];
 
-  rules.push({
-    skor: Math.min(servisFuzzy.baik, hargaFuzzy.murah),
-    nilai: 90,
-  });
-
-  rules.push({
-    skor: Math.min(servisFuzzy.baik, hargaFuzzy.sedang),
-    nilai: 80,
-  });
-
-  rules.push({
-    skor: Math.min(servisFuzzy.sedang, hargaFuzzy.murah),
-    nilai: 70,
-  });
-
-  rules.push({
-    skor: Math.min(servisFuzzy.sedang, hargaFuzzy.sedang),
-    nilai: 60,
-  });
-
-  rules.push({
-    skor: Math.min(servisFuzzy.buruk, hargaFuzzy.murah),
-    nilai: 50,
-  });
+  rules.push({ skor: Math.min(servisFuzzy.baik, hargaFuzzy.murah), nilai: 90 });
+  rules.push({ skor: Math.min(servisFuzzy.baik, hargaFuzzy.sedang), nilai: 80 });
+  rules.push({ skor: Math.min(servisFuzzy.sedang, hargaFuzzy.murah), nilai: 70 });
+  rules.push({ skor: Math.min(servisFuzzy.sedang, hargaFuzzy.sedang), nilai: 60 });
+  rules.push({ skor: Math.min(servisFuzzy.buruk, hargaFuzzy.murah), nilai: 50 });
 
   return rules;
 }
+
 
 function defuzzification(rules) {
   let atas = 0;
