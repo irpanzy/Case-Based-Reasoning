@@ -1,11 +1,11 @@
-const xlsx = require("xlsx");
+const xlsx = require("xlsx"); //Import library xlsx untuk membaca dan menulis file Excel
 
 function bacaData(filename) {
-  const workbook = xlsx.readFile(filename);
-  const sheetName = workbook.SheetNames[0];
-  const data = xlsx.utils.sheet_to_json(workbook.Sheets[sheetName]);
+  const workbook = xlsx.readFile(filename); // Membaca file Excel
+  const sheetName = workbook.SheetNames[0]; // Mengambil nama sheet pertama
+  const data = xlsx.utils.sheet_to_json(workbook.Sheets[sheetName]); // Konversi ke array ke JSON
 
-  console.log(data);
+  console.log(data); // Menampilkan data untuk debugging
 
   return data;
 }
@@ -14,12 +14,12 @@ function fuzzyServis(pelayanan) {
   return {
     buruk: pelayanan <= 50 ? 1 - pelayanan / 50 : 0,
     sedang:
-      pelayanan > 30 && pelayanan < 70
-        ? pelayanan <= 50
-          ? (pelayanan - 30) / 20
-          : (70 - pelayanan) / 20
+      pelayanan > 50 && pelayanan < 70
+        ? pelayanan <= 60
+          ? (pelayanan - 50) / 10
+          : (70 - pelayanan) / 10
         : 0,
-    baik: pelayanan >= 50 ? (pelayanan - 50) / 50 : 0,
+    baik: pelayanan >= 60 ? (pelayanan - 60) / 10 : 0,
   };
 }
 
@@ -27,12 +27,12 @@ function fuzzyHarga(harga) {
   return {
     murah: harga <= 40000 ? 1 - (harga - 25000) / 15000 : 0,
     sedang:
-      harga > 30000 && harga < 50000
-        ? harga <= 40000
-          ? (harga - 30000) / 10000
-          : (50000 - harga) / 10000
+      harga > 40000 && harga < 50000
+        ? harga <= 45000
+          ? (harga - 40000) / 5000
+          : (50000 - harga) / 5000
         : 0,
-    mahal: harga >= 40000 ? (harga - 40000) / 15000 : 0,
+    mahal: harga >= 47500 ? (harga - 47500) / 2500 : 0,
   };
 }
 
@@ -47,7 +47,6 @@ function inferensi(servisFuzzy, hargaFuzzy) {
 
   return rules;
 }
-
 
 function defuzzification(rules) {
   let atas = 0;
