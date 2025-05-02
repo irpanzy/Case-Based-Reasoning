@@ -19,7 +19,7 @@ function fuzzyServis(pelayanan) {
           ? (pelayanan - 50) / 10
           : (70 - pelayanan) / 10
         : 0,
-    baik: pelayanan >= 60 ? (pelayanan - 60) / 10 : 0,
+    baik: pelayanan >= 70 ? (pelayanan - 70) / 10 : 0,
   };
 }
 
@@ -32,7 +32,7 @@ function fuzzyHarga(harga) {
           ? (harga - 40000) / 5000
           : (50000 - harga) / 5000
         : 0,
-    mahal: harga >= 47500 ? (harga - 47500) / 2500 : 0,
+    mahal: harga >= 50000 ? (harga - 50000) / 2500 : 0,
   };
 }
 
