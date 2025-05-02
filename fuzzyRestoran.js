@@ -36,6 +36,19 @@ function fuzzyHarga(harga) {
   };
 }
 
+function defuzzification(rules) {
+  let atas = 0;
+  let bawah = 0;
+
+  rules.forEach((rule) => {
+    atas += rule.skor * rule.nilai;
+    bawah += rule.skor;
+  });
+
+  if (bawah === 0) return 0;
+  return atas / bawah;
+}
+
 function inferensi(servisFuzzy, hargaFuzzy) {
   const rules = [];
 
@@ -53,19 +66,6 @@ function inferensi(servisFuzzy, hargaFuzzy) {
   rules.push({ skor: Math.min(servisFuzzy.buruk, hargaFuzzy.mahal), nilai: 30 });
 
   return rules;
-}
-
-function defuzzification(rules) {
-  let atas = 0;
-  let bawah = 0;
-
-  rules.forEach((rule) => {
-    atas += rule.skor * rule.nilai;
-    bawah += rule.skor;
-  });
-
-  if (bawah === 0) return 0;
-  return atas / bawah;
 }
 
 function prosesFuzzy(inputFile, outputFile) {
