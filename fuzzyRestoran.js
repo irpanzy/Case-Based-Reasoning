@@ -39,11 +39,18 @@ function fuzzyHarga(harga) {
 function inferensi(servisFuzzy, hargaFuzzy) {
   const rules = [];
 
+  // 3 (servis) × 3 (harga) = 9 aturan
   rules.push({ skor: Math.min(servisFuzzy.baik, hargaFuzzy.murah), nilai: 90 });
   rules.push({ skor: Math.min(servisFuzzy.baik, hargaFuzzy.sedang), nilai: 80 });
+  rules.push({ skor: Math.min(servisFuzzy.baik, hargaFuzzy.mahal), nilai: 70 });
+
   rules.push({ skor: Math.min(servisFuzzy.sedang, hargaFuzzy.murah), nilai: 70 });
   rules.push({ skor: Math.min(servisFuzzy.sedang, hargaFuzzy.sedang), nilai: 60 });
+  rules.push({ skor: Math.min(servisFuzzy.sedang, hargaFuzzy.mahal), nilai: 50 });
+
   rules.push({ skor: Math.min(servisFuzzy.buruk, hargaFuzzy.murah), nilai: 50 });
+  rules.push({ skor: Math.min(servisFuzzy.buruk, hargaFuzzy.sedang), nilai: 40 });
+  rules.push({ skor: Math.min(servisFuzzy.buruk, hargaFuzzy.mahal), nilai: 30 });
 
   return rules;
 }
